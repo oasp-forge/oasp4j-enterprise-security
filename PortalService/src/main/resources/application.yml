@@ -1,0 +1,8 @@
+security:
+  basic:
+    enabled: false
+zuul:
+  routes:
+    exampleApp:
+      path: portal/oasp4j-example-application/**
+      url: http://openam.sixgems.org:8081/oasp4j-example-application
