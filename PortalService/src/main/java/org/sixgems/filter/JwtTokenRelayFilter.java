@@ -29,9 +29,6 @@ public class JwtTokenRelayFilter extends ZuulFilter{
     private final String jwtHeaderName = "authorization";
     private final String jwtHeaderTokenType = "Bearer";
 
-    @Value("${auth.sessionAttributeName}")
-    String authSessionAttribute;
-
     @Autowired
     SsoTokenExtractorService tokenExtractorService;
 
@@ -62,18 +59,20 @@ public class JwtTokenRelayFilter extends ZuulFilter{
 
     @Override
     public Object run() {
-        String currentSessionJwt = jwtTokenSessionHolder.getJwt();
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest req = ctx.getRequest();
 
-        if (currentSessionJwt==null || !jwtTokenService.isValid(currentSessionJwt)) {
-            SSOToken ssoToken = tokenExtractorService.extractToken(req);
+        SSOToken ssoToken = tokenExtractorService.extractToken(req);
+        String currentSessionJwt = jwtTokenSessionHolder.getJwt();
+        String currentSessionSSOTokenId = jwtTokenSessionHolder.getSsoTokenId();
 
+        if (isTokenGenerationRequired(currentSessionJwt, currentSessionSSOTokenId, ssoToken)) {
             try {
                 SsoUserDetails userDetails = userDetailsService.getSsoUserDetailsFromSsoToken(ssoToken);
                 String jwt = jwtTokenService.convertToJwt(userDetails);
 
                 jwtTokenSessionHolder.setJwt(jwt);
+                jwtTokenSessionHolder.setSsoTokenId(ssoToken.getTokenID().toString());
                 System.out.println(jwt);
             } catch (SsoUserDetailsCreationException e) {
                 //Throw exception if userDetails cannot be created out of the SSOToken
@@ -85,5 +84,14 @@ public class JwtTokenRelayFilter extends ZuulFilter{
         //Adds the generated Json Web Token to the Request Header as Bearer-token
         ctx.addZuulRequestHeader(jwtHeaderName, jwtHeaderTokenType + " " + jwtTokenSessionHolder.getJwt());
         return new Object();
+    }
+
+    private boolean isTokenGenerationRequired(String currentJwt, String currentSSOTokenId, SSOToken ssoToken){
+        if (currentJwt !=null && currentSSOTokenId!=null && ssoToken!=null){
+            if (jwtTokenService.isValid(currentJwt) && currentSSOTokenId.equals(ssoToken.getTokenID().toString())){
+                return false;
+            }
+        }
+        return true;
     }
 }

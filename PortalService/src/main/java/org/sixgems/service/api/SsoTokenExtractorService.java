@@ -11,5 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public interface SsoTokenExtractorService {
 
+    /**
+     * Returns the extracted SSOToken of the HttpServletRequest
+     * @param request
+     * @return
+     */
     SSOToken extractToken(HttpServletRequest request);
 }
