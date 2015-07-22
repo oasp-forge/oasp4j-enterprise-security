@@ -4,5 +4,14 @@ security:
 zuul:
   routes:
     exampleApp:
-      path: portal/oasp4j-example-application/**
+      path: /oasp4j-example-application/**
       url: http://openam.sixgems.org:8081/oasp4j-example-application
+auth:
+  sessionAttributeName: jwtSessionToken
+openam:
+  ssotoken:
+    properties:
+      username: UserId
+    attributes:
+      groupsAttribute: objectClass
+      additionalAttributes: mail,employeeNumber,postalAddress
