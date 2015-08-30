@@ -1,52 +1,34 @@
 package com.example.tests;
 
-import com.thoughtworks.selenium.*;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import java.util.regex.Pattern;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
 
-public class loginLogoutChiefTestNG extends SeleneseTestNgHelper {
-	@Test public void testLoginLogoutChiefTestNG() throws Exception {
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head profile="http://selenium-ide.openqa.org/profiles/test-case">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:8081/" />
-<title>loginLogoutChief</title>
-</head>
-<body>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">loginLogoutChief</td></tr>
-</thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/oasp4j-example-application/</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>name=userName</td>
-	<td>chief</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>name=password</td>
-	<td>chief</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>css=button.btn.btn-success</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//div[2]/div/button</td>
-	<td></td>
-</tr>
-</tbody></table>
-</body>
-</html>
-	}
+import com.thoughtworks.selenium.Selenium;
+
+//import com.thoughtworks.selenium.SeleneseTestNgHelper;
+
+//@SuppressWarnings("javadoc")
+public class loginLogoutChiefTestNG
+// extends SeleneseTestNgHelper
+{
+  private Selenium selenium;
+
+  private WebDriver driver;
+
+  // @SuppressWarnings("deprecation")
+  @Test
+  public void testLoginLogoutChiefTestNG() throws Exception {
+
+    this.driver = new FirefoxDriver();
+    this.driver.get("http://localhost:8081/oasp4j-sample-server/");
+    this.driver.findElement(By.name("name=userName")).sendKeys("chief");
+    this.driver.findElement(By.name("name=password")).sendKeys("chief");
+    this.driver.findElement(By.cssSelector("button.btn.btn-success")).click();
+    this.driver.findElement(By.xpath("//div[2]/div/button")).click();
+    this.driver.wait(1000);
+    System.out.println("Test war erfolgreich. :D");
+    this.driver.quit();
+  }
 }
