@@ -104,7 +104,7 @@
         <version>2.18.1</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>/var/lib/jenkins/workspace/SampleApplication/oasp4j/Selenium/testng.xml</suiteXmlFile>
+            <suiteXmlFile>/var/lib/jenkins/workspace/SampleApplication/oasp4j/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
