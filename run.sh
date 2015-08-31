@@ -1,1 +1,1 @@
-java -cp oasp4j/selenium/bin;oasp4j/selenium/lib/* org.testng.TestNG oasp4j/selenium/testng.xml
+java -cp oasp4j/selenium/bin;oasp4j/selenium/lib/* org.testng.TestNG oasp4j/testng.xml
