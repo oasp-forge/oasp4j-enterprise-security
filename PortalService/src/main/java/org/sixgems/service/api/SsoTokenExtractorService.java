@@ -1,6 +1,7 @@
 package org.sixgems.service.api;
 
 import com.iplanet.sso.SSOToken;
+import org.sixgems.model.api.SsoAccessToken;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public interface SsoTokenExtractorService {
 
     /**
-     * Returns the extracted SSOToken of the HttpServletRequest
+     * Returns the extracted SsoAccessToken of the HttpServletRequest
      * @param request
      * @return
      */
-    SSOToken extractToken(HttpServletRequest request);
+    SsoAccessToken extractToken(HttpServletRequest request);
 }

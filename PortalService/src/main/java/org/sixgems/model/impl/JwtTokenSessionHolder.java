@@ -1,5 +1,6 @@
 package org.sixgems.model.impl;
 
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -7,7 +8,10 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 /**
- * Created by Julian on 16.07.2015.
+ * This component is responsible for storing and retrieving the generated Json Web Token
+ * and a unique identifier for the SSOToken per user Session
+ *
+ * Created by Julian on 22.07.2015.
  */
 @Component
 @Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)

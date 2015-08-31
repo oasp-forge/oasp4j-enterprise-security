@@ -3,6 +3,8 @@ package org.sixgems.service.impl;
 import com.iplanet.sso.SSOException;
 import com.iplanet.sso.SSOToken;
 import com.iplanet.sso.SSOTokenManager;
+import org.sixgems.model.api.SsoAccessToken;
+import org.sixgems.model.impl.OpenAMAccessToken;
 import org.sixgems.service.api.SsoTokenExtractorService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class OpenAMSsoTokenExtractorService implements SsoTokenExtractorService{
     @Override
-    public SSOToken extractToken(HttpServletRequest request) {
+    public SsoAccessToken extractToken(HttpServletRequest request) {
         SSOToken token = getSsoTokenFromServletRequest(request);
         if (isTokenValid(token)){
-            return token;
+            return new OpenAMAccessToken(token);
         }
         return null;
     }

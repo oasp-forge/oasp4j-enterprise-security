@@ -3,9 +3,9 @@ security:
     enabled: false
 zuul:
   routes:
-    exampleApp:
-      path: /oasp4j-example-application/**
-      url: http://openam.sixgems.org:8081/oasp4j-example-application
+    exampleAppServer:
+      path: /oasp4j-sample-server/**
+      url: http://openam.sixgems.org:8081/oasp4j-sample-server
 auth:
   sessionAttributeName: jwtSessionToken
 openam:

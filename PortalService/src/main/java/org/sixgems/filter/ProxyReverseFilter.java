@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Julian on 21.06.2015.
  */
-@Component
+//@Component
 public class ProxyReverseFilter extends ZuulFilter {
 
     private final String locationHeaderName = "Location";

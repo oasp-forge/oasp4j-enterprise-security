@@ -9,7 +9,7 @@ import org.sixgems.service.api.SsoTokenExtractorService;
 import org.sixgems.service.api.SsoUserDetailsService;
 import org.sixgems.service.impl.JwtTokenServiceImpl;
 import org.sixgems.service.impl.OpenAMSsoTokenExtractorService;
-import org.sixgems.service.impl.OpenAMSsoUserDetailsService;
+import org.sixgems.service.impl.DefaultSsoUserDetailsService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -63,14 +63,14 @@ public class PortalServiceApp extends SpringBootServletInitializer {
         @Bean
         public JwtTokenService tokenConverterService(){
             JwtTokenServiceImpl converter = new JwtTokenServiceImpl();
-            converter.setSignatureAlgorithm(SignatureAlgorithm.HS256);
-            converter.setValidityPeriodInMin(1);
+            converter.setSignatureAlgorithm(SignatureAlgorithm.HS512);
+            converter.setValidityPeriodInMin(10);
             return converter;
         }
 
         @Bean
         public SsoUserDetailsService userDetailsService(){
-            return new OpenAMSsoUserDetailsService();
+            return new DefaultSsoUserDetailsService();
         }
 
     }

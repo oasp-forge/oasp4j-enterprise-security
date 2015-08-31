@@ -11,6 +11,8 @@
     <packaging>war</packaging>
 
     <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <start-class>org.sixgems.PortalServiceApp</start-class>
         <openam.version>10.0.0</openam.version>
     </properties>
@@ -100,6 +102,12 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
+
+        <repository>
+            <id>forgerock</id>
+            <url>http://maven.forgerock.org/repo/releases</url>
+        </repository>
+
     </repositories>
     <pluginRepositories>
         <pluginRepository>
