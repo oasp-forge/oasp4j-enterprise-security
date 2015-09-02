@@ -16,7 +16,7 @@ public class loginLogoutChiefTestNG
   // @SuppressWarnings("deprecation")
   @Test
   public void testLoginLogoutChiefTestNG() throws Exception {
-
+    System.out.println("Test wird gestartet...");
     this.driver = new FirefoxDriver();
     this.driver.get("http://localhost:8081/oasp4j-sample-server/");
     this.driver.findElement(By.name("userName")).sendKeys("chief");
