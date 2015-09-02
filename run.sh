@@ -1,3 +1,1 @@
-CLASSPATH=/var/lib/jenkins/workspace/SampleApplication/oasp4j/selenium/bin:/var/lib/jenkins/workspace/SampleApplication/oasp4j/selenium/lib/*
-export CLASSPATH
-java -cp $CLASSPATH org.testng.TestNG oasp4j/testng.xml
+java -cp "/var/lib/jenkins/workspace/SampleApplication/oasp4j/selenium/bin:/var/lib/jenkins/workspace/SampleApplication/oasp4j/selenium/lib/*" org.testng.TestNG oasp4j/testng.xml
