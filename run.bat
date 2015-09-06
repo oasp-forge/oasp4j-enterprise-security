@@ -1,1 +1,1 @@
-java -cp "\oasp4j\Selenium\bin:\oasp4j\Selenium\lib\*:\oasp4j\Selenium\testng_lib\*" org.testng.TestNG "oasp4j/testng.xml"
+java -cp /oasp4j/Selenium/bin;/oasp4j/Selenium/lib/*;/oasp4j/Selenium/testng_lib/* org.testng.TestNG oasp4j/testng.xml
