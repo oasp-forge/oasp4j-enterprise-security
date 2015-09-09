@@ -18,7 +18,7 @@ public class loginLogoutChiefTestNG
   public void testLoginLogoutChiefTestNG() throws Exception {
     System.out.println("Test wird gestartet...");
     this.driver = new FirefoxDriver();
-    this.driver.get("http://localhost:8081/oasp4j-sample-server/");
+    this.driver.get("http://vm3.rbg.informatik.tu-darmstadt.de:8081/oasp4j-sample-server/");
     this.driver.findElement(By.name("userName")).sendKeys("chief");
     this.driver.findElement(By.name("password")).sendKeys("chief");
     this.driver.findElement(By.cssSelector("button.btn.btn-success")).click();
