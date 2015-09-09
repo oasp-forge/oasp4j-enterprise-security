@@ -1,12 +1,13 @@
-<project name="MyProject" basedir=".">
+<project name="MyProject" default="dist" basedir=".">
   <description>
     simple example build file
   </description>
   <!-- set global properties for this build -->
   <property name="src" location="Selenium/src"/>
   <property name="bin" location="Selenium/bin"/>
+  <property name="dist" location="Selenium/output"/>
 
-  <target name="init" depends="clean">
+  <target name="init" >
     <!-- Create the time stamp -->
     <tstamp/>
     <!-- Create the build directory structure used by compile -->
@@ -19,9 +20,19 @@
     <javac srcdir="${src}" destdir="${bin}"/>
   </target>
 
+   <target name="dist" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+
   <target name="clean"
         description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${bin}"/>
+    <delete dir="${dist}"/>
   </target>
 </project>
