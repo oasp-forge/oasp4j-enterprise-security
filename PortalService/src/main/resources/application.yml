@@ -5,7 +5,7 @@ zuul:
   routes:
     exampleAppServer:
       path: /oasp4j-sample-server/**
-      url: http://openam.sixgems.org:8081/oasp4j-sample-server
+      url: http://openam.sixgems.org:7070/oasp4j-sample-server
 auth:
   sessionAttributeName: jwtSessionToken
 openam:
