@@ -3,12 +3,11 @@ package org.sixgems.service.impl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
+import org.sixgems.helper.KeyHandler;
 import org.sixgems.model.api.SsoUserDetails;
 import org.sixgems.service.api.JwtTokenService;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.security.Key;
 import java.util.*;
 
@@ -23,15 +22,20 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     private SignatureAlgorithm signatureAlgorithm;
 
+    private KeyHandler keyHandler;
+
     //Default validityPeriod of 10 minutes
     private int validityPeriodInMin = 10;
 
     public JwtTokenServiceImpl() {
-        key = MacProvider.generateKey();
+        keyHandler = new KeyHandler();
+
         try{
+            key = keyHandler.getPrivateKey("private_key.der");
             issuer = InetAddress.getLocalHost().getHostName();
+
         }
-        catch(UnknownHostException e){
+        catch(Exception e){
             issuer = "";
         }
     }
@@ -51,7 +55,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         String jwtString = Jwts.builder()
                 .setHeaderParam("typ","JWT")
                 .setClaims(claims)
-                .signWith(signatureAlgorithm, "tooManySecrets")
+                .signWith(signatureAlgorithm, key)
                 .compact();
         return jwtString;
     }
@@ -70,7 +74,6 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         Map<String, Object> claims = new HashMap<>();
         Map<String, Object> attributes = userDetails.getSsoUserAttributes();
         Collection<String> groups = userDetails.getSsoUserGroups();
-        groups.add("waiter");
 
         //put all additional user attributes in the claims map, which should be passed to the backend-services
         if (attributes!=null && !attributes.isEmpty()){

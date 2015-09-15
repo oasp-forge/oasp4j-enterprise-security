@@ -3,6 +3,9 @@ security:
     enabled: false
 zuul:
   routes:
+    logout:
+      path: /logout
+      url: http://openam.sixgems.org:8080/OpenAMTest/UI/Logout
     exampleAppServer:
       path: /oasp4j-sample-server/**
       url: http://openam.sixgems.org:8081/oasp4j-sample-server
@@ -13,5 +16,4 @@ openam:
     properties:
       username: UserId
     attributes:
-      groupsAttribute: objectClass
-      additionalAttributes: mail,employeeNumber,postalAddress
+      additionalAttributes: cn,mail,employeeNumber,postalAddress

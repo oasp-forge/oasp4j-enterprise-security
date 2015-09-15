@@ -20,9 +20,6 @@ import java.util.*;
  */
 public class DefaultSsoUserDetailsService implements SsoUserDetailsService{
 
-    @Value("${openam.ssotoken.attributes.groupsAttribute}")
-    private String groupsAttributeName;
-
     @Value("#{'${openam.ssotoken.attributes.additionalAttributes}'.split(',')}")
     private List<String> additionalAttributeNames;
 
@@ -37,7 +34,7 @@ public class DefaultSsoUserDetailsService implements SsoUserDetailsService{
                 String userName = token.getUsername(usernameProperty);
                 String principalUser = userName;
 
-                Collection<String> groups = token.getUserGroups(groupsAttributeName);
+                Collection<String> groups = token.getUserGroups();
                 Map<String, Object> attributes = token.getUserAttributes(additionalAttributeNames);
 
                 return new OpenAMSsoUser(principalUser, userName, groups, attributes);

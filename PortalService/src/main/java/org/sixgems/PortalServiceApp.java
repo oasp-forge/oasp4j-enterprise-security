@@ -63,7 +63,7 @@ public class PortalServiceApp extends SpringBootServletInitializer {
         @Bean
         public JwtTokenService tokenConverterService(){
             JwtTokenServiceImpl converter = new JwtTokenServiceImpl();
-            converter.setSignatureAlgorithm(SignatureAlgorithm.HS512);
+            converter.setSignatureAlgorithm(SignatureAlgorithm.RS256);
             converter.setValidityPeriodInMin(10);
             return converter;
         }

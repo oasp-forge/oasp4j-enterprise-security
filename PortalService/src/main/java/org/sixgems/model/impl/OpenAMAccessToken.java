@@ -4,6 +4,7 @@ import com.iplanet.sso.SSOException;
 import com.iplanet.sso.SSOToken;
 import com.sun.identity.idm.AMIdentity;
 import com.sun.identity.idm.IdRepoException;
+import com.sun.identity.idm.IdType;
 import com.sun.identity.idm.IdUtils;
 import org.sixgems.model.api.SsoAccessToken;
 import org.sixgems.service.SsoUserDetailsCreationException;
@@ -42,8 +43,8 @@ public class OpenAMAccessToken implements SsoAccessToken{
     }
 
     @Override
-    public Collection<String> getUserGroups(String groupsProp) throws RuntimeException{
-        return obtainUserGroups(this.ssoToken, groupsProp);
+    public Collection<String> getUserGroups() throws RuntimeException{
+        return obtainUserGroups(this.ssoToken);
     }
 
     @Override
@@ -55,11 +56,18 @@ public class OpenAMAccessToken implements SsoAccessToken{
      * Method for obtaining User Group information
      * @return
      */
-    private Collection<String> obtainUserGroups(SSOToken ssoToken, String groupsProp){
-
+    private Collection<String> obtainUserGroups(SSOToken ssoToken){
+        Collection<String> groups= new ArrayList<>();
         try{
             AMIdentity userIdentity = IdUtils.getIdentity(ssoToken);
-            return userIdentity.getAttribute(groupsProp);
+            Set<AMIdentity> amGroups = userIdentity.getMemberships(IdType.GROUP);
+            for(AMIdentity amGroup : amGroups){
+                if (amGroup.getType().equals(IdType.GROUP)){
+                    groups.add(amGroup.getName());
+                }
+            }
+
+            return groups;
         }
         catch(IdRepoException | SSOException e){
             throw new RuntimeException("Unable to obtain user groups");

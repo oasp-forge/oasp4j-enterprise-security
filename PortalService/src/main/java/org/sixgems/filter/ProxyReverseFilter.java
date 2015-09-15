@@ -29,6 +29,15 @@ public class ProxyReverseFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        /*RequestContext context = RequestContext.getCurrentContext();
+        List<Pair<String, String>> responseHeaders = context.getZuulResponseHeaders();
+
+        for (Pair<String, String> entry: responseHeaders){
+            if (entry.first().equals(locationHeaderName) && entry.second().equals("http://openam.sixgems.org:8080/OpenAMTest/XUI/#logout/")){
+                return false;
+            }
+        }*/
+
         return true;
     }
 
