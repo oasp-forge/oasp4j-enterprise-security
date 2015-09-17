@@ -73,7 +73,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
         Map<String, Object> claims = new HashMap<>();
         Map<String, Object> attributes = userDetails.getSsoUserAttributes();
-        Collection<String> groups = userDetails.getSsoUserGroups();
+        Map<String, Collection<String>> groups = userDetails.getSsoUserGroups();
 
         //put all additional user attributes in the claims map, which should be passed to the backend-services
         if (attributes!=null && !attributes.isEmpty()){

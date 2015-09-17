@@ -13,7 +13,7 @@ public interface SsoAccessToken {
 
     String getUsername(String propName);
 
-    Collection<String> getUserGroups();
+    Map<String, Collection<String>> getUserGroups();
 
     Map<String, Object> getUserAttributes(List<String> propNames);
 

@@ -17,6 +17,7 @@ import java.util.*;
  */
 public class OpenAMAccessToken implements SsoAccessToken{
 
+    private final String generalGroupName = "general";
 
     private SSOToken ssoToken;
 
@@ -43,8 +44,18 @@ public class OpenAMAccessToken implements SsoAccessToken{
     }
 
     @Override
-    public Collection<String> getUserGroups() throws RuntimeException{
-        return obtainUserGroups(this.ssoToken);
+    public Map<String, Collection<String>> getUserGroups() throws RuntimeException{
+        Map<String, Collection<String>> userGroupsForApp = new HashMap<>();
+        Collection<String> appGroups = obtainUserGroups(this.ssoToken);
+
+        for (String appGroup: appGroups){
+            String[] splittedAppAndGroup = getValidAppAndGroupName(appGroup);
+            if (splittedAppAndGroup!=null){
+                userGroupsForApp = addToUserGroupsMap(splittedAppAndGroup[0], splittedAppAndGroup[1], userGroupsForApp);
+            }
+        }
+
+        return userGroupsForApp;
     }
 
     @Override
@@ -93,5 +104,36 @@ public class OpenAMAccessToken implements SsoAccessToken{
         }
 
         return additionalAttributes;
+    }
+
+    /**
+     * returns a String Array of size two. Index 0 is the Application name and Index 1 the Group name.
+     * If the provided groupName has not the valid format ('APPNAME_GROUPNAME') null will be returned
+     * @param groupName
+     * @return
+     */
+    private String[] getValidAppAndGroupName (String groupName){
+        String [] splitName = groupName.trim().split("_");
+        return splitName.length==2 ? splitName : null;
+    }
+
+    /**
+     * Adds an appName - groupName combination to the user groups Map
+     * @param appName
+     * @param groupName
+     * @param currentMap
+     * @return the provided currentMap plus the newly created entry
+     */
+    private Map<String, Collection<String>> addToUserGroupsMap (String appName, String groupName, Map<String, Collection<String>> currentMap){
+        if (currentMap.containsKey(appName)){
+            currentMap.get(appName).add(groupName);
+        }
+        else{
+            Collection<String> groupList = new ArrayList<>();
+            groupList.add(groupName);
+            currentMap.put(appName, groupList);
+        }
+
+        return currentMap;
     }
 }

@@ -34,7 +34,7 @@ public class DefaultSsoUserDetailsService implements SsoUserDetailsService{
                 String userName = token.getUsername(usernameProperty);
                 String principalUser = userName;
 
-                Collection<String> groups = token.getUserGroups();
+                Map<String, Collection<String>> groups = token.getUserGroups();
                 Map<String, Object> attributes = token.getUserAttributes(additionalAttributeNames);
 
                 return new OpenAMSsoUser(principalUser, userName, groups, attributes);

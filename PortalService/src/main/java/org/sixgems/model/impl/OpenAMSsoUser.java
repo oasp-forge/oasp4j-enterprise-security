@@ -15,11 +15,11 @@ public class OpenAMSsoUser implements SsoUserDetails {
 
     private String ssoUserName;
 
-    private Collection<String> ssoUserGroups;
+    private Map<String, Collection<String>> ssoUserGroups;
 
     private Map<String, Object> ssoUserAttributes;
 
-    public OpenAMSsoUser(String ssoPrincipalName, String ssoUserName, Collection<String> ssoUserGroups, Map<String, Object> ssoUserAttributes) {
+    public OpenAMSsoUser(String ssoPrincipalName, String ssoUserName, Map<String, Collection<String>> ssoUserGroups, Map<String, Object> ssoUserAttributes) {
 
         if (ssoPrincipalName == null || ssoPrincipalName.equals("") || ssoUserName == null || ssoUserName.equals("")){
             throw new IllegalArgumentException("The username and the principalName must not be null or empty");
@@ -42,7 +42,7 @@ public class OpenAMSsoUser implements SsoUserDetails {
     }
 
     @Override
-    public Collection<String> getSsoUserGroups() {
+    public Map<String, Collection<String>> getSsoUserGroups() {
         return ssoUserGroups;
     }
 

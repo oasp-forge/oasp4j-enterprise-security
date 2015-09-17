@@ -24,9 +24,11 @@ public interface SsoUserDetails{
 
     /**
      * Returns the groups the SsoUser is associated with
+     * Keys of the map represent an application name or 'general' (for groups which are valid across all apps)
+     * Values of the Map represent a collection of group-names associated with the application name
      * @return a Collection of groupNames
      */
-    Collection<String> getSsoUserGroups();
+    Map<String, Collection<String>> getSsoUserGroups();
 
     /**
      * Returns additional Attributes of the Single Sign On User

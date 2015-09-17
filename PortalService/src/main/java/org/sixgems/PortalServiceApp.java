@@ -3,11 +3,14 @@ package org.sixgems;
 import com.netflix.zuul.ZuulFilter;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.sixgems.filter.JwtTokenRelayFilter;
+import org.sixgems.filter.LogoutFilter;
 import org.sixgems.filter.ProxyReverseFilter;
 import org.sixgems.service.api.JwtTokenService;
+import org.sixgems.service.api.LogoutService;
 import org.sixgems.service.api.SsoTokenExtractorService;
 import org.sixgems.service.api.SsoUserDetailsService;
 import org.sixgems.service.impl.JwtTokenServiceImpl;
+import org.sixgems.service.impl.OpenAMLogoutServiceImpl;
 import org.sixgems.service.impl.OpenAMSsoTokenExtractorService;
 import org.sixgems.service.impl.DefaultSsoUserDetailsService;
 import org.springframework.boot.SpringApplication;
@@ -49,6 +52,11 @@ public class PortalServiceApp extends SpringBootServletInitializer {
         public ZuulFilter proxyReverseFilter(){
             return new ProxyReverseFilter();
         }
+
+        @Bean
+        public ZuulFilter userLogoutFilter(){
+            return new LogoutFilter();
+        }
     }
 
     @Configuration
@@ -71,6 +79,11 @@ public class PortalServiceApp extends SpringBootServletInitializer {
         @Bean
         public SsoUserDetailsService userDetailsService(){
             return new DefaultSsoUserDetailsService();
+        }
+
+        @Bean
+        public LogoutService userLogoutService(){
+            return new OpenAMLogoutServiceImpl();
         }
 
     }
