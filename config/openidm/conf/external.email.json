@@ -1,0 +1,18 @@
+{
+    "host" : "smtp.1und1.com",
+    "port" : "587",
+    "username" : "no-reply@6gems.de",
+    "password" : {
+        "$crypto" : {
+            "value" : {
+                "iv" : "PBbzQlG27dQDYvU4ODtSJA==",
+                "data" : "V5ZYn4T5HaRraWbAy7v7hg==",
+                "cipher" : "AES/CBC/PKCS5Padding",
+                "key" : "openidm-sym-default"
+            },
+            "type" : "x-simple-encryption"
+        }
+    },
+    "mail.smtp.auth" : "true",
+    "mail.smtp.starttls.enable" : "true"
+}
