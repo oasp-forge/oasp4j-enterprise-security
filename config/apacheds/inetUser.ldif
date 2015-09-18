@@ -1,0 +1,97 @@
+version: 1
+
+dn: m-oid=1.2.840.113556.1.2.102,ou=attributetypes,cn=inetUser,ou=schema
+objectclass: metaAttributeType
+objectclass: top
+objectclass: metaTop
+m-oid: 1.2.840.113556.1.2.102
+m-name: memberOf
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.12
+
+dn: ou=matchingruleuse,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: matchingruleuse
+
+dn: ou=nameforms,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: nameforms
+
+dn: m-oid=2.16.840.1.113730.3.1.692,ou=attributetypes,cn=inetUser,ou=schema
+objectclass: metaAttributeType
+objectclass: top
+objectclass: metaTop
+m-oid: 2.16.840.1.113730.3.1.692
+m-name: inetUserStatus
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
+
+dn: ou=comparators,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: comparators
+
+dn: ou=matchingrules,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: matchingrules
+
+dn: m-oid=2.16.840.1.113730.3.2.130,ou=objectclasses,cn=inetUser,ou=schema
+objectclass: top
+objectclass: metaObjectClass
+objectclass: metaTop
+m-oid: 2.16.840.1.113730.3.2.130
+m-may: inetUserHttpURL
+m-may: memberOf
+m-may: inetUserStatus
+m-name: inetUser
+m-typeobjectclass: AUXILIARY
+
+dn: ou=syntaxcheckers,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: syntaxcheckers
+
+dn: ou=syntaxes,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: syntaxes
+
+dn: ou=objectclasses,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: objectClasses
+
+dn: ou=ditcontentrules,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: ditcontentrules
+
+dn: cn=inetUser,ou=schema
+objectclass: metaSchema
+objectclass: top
+cn: inetUser
+
+dn: ou=normalizers,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: normalizers
+
+dn: ou=attributetypes,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: attributetypes
+
+dn: m-oid=2.16.840.1.113730.3.1.693,ou=attributetypes,cn=inetUser,ou=schema
+objectclass: metaAttributeType
+objectclass: top
+objectclass: metaTop
+m-oid: 2.16.840.1.113730.3.1.693
+m-name: inetUserHttpURL
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.26
+
+dn: ou=ditstructurerules,cn=inetUser,ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: ditstructurerules
+

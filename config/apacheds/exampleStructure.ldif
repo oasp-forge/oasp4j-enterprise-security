@@ -1,0 +1,111 @@
+version: 1
+
+dn: uid=ext_stephan,ou=People,dc=sixgems,dc=org
+objectClass: inetUser
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: Stephan Beispielname
+sn: Beispielname
+givenName: Stephan
+inetUserStatus: active
+mail: stephan@beispiel.de
+telephoneNumber: 01763748563
+uid: ext_stephan
+userPassword:: e3NzaGF9TVM5OVpZNFZSbWx4NnFxRUVUcm00d1oySXNUVllQQkU5NmZHYWc9P
+ Q==
+
+dn: cn=restaurant_chief,ou=groups,dc=sixgems,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: restaurant_chief
+uniqueMember: uid=ext_xenia,ou=Person,dc=sixgems,dc=org
+
+dn: ou=People,dc=sixgems,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: People
+
+dn: cn=general_generaluser,ou=groups,dc=sixgems,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: general_generaluser
+uniqueMember: uid=ext_stephan,ou=People,dc=sixgems,dc=org
+
+dn: cn=hotel_chief,ou=groups,dc=sixgems,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: hotel_chief
+uniqueMember: uid=ext_tanja,ou=People,dc=sixgems,dc=org
+
+dn: uid=ext_xenia,ou=People,dc=sixgems,dc=org
+objectClass: inetUser
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: Xenia Beispielname
+sn: Beispielname
+givenName: Xenia
+inetUserStatus: active
+mail: xenia@beispielname.de
+telephoneNumber: 017846072463
+uid: ext_xenia
+userPassword:: e1NTSEF9NVFJTTFKa2xuek5kZGhaRmRHMTV6Y2xSWkpzb2pCVUh6aDRpZUE9P
+ Q==
+
+dn: uid=ext_pavel,ou=People,dc=sixgems,dc=org
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: inetUser
+cn: Pavel Mustermann
+sn: Mustermann
+givenName: Pavel
+inetUserStatus: inactive
+mail: pavel@gmail.com
+telephoneNumber: 0173892137
+uid: ext_pavel
+userPassword:: e1NTSEF9d08xRW5ZN3hZVXprVjVHSjcvZWFqV1VIcDBGYnZ1Rk84aUZuV3c9P
+ Q==
+
+dn: ou=groups,dc=sixgems,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: groups
+
+dn: cn=restaurant_waiter,ou=groups,dc=sixgems,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: restaurant_waiter
+uniqueMember: uid=ext_xenia,ou=Person,dc=sixgems,dc=org
+
+dn: cn=general_generaladmin,ou=groups,dc=sixgems,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: general_generaladmin
+uniqueMember: uid=ext_xenia,ou=People,dc=sixgems,dc=org
+
+dn: dc=sixgems,dc=org
+objectclass: top
+objectclass: domain
+dc: sixgems
+
+dn: uid=ext_tanja,ou=People,dc=sixgems,dc=org
+objectClass: inetUser
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: Tanja Beispielname
+sn: Beispielname
+givenName: Tanja
+inetUserStatus: active
+mail: tanja@huhu.de
+telephoneNumber: 01763748563
+uid: ext_tanja
+userPassword:: e3NzaGF9ckVwUHFqT1E0UndPS1RCZnFXTWZyRVlZaUg4SEtpSEo3WkoyNnc9P
+ Q==
+
