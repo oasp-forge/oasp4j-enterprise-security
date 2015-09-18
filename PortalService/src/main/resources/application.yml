@@ -1,16 +1,38 @@
 security:
   basic:
     enabled: false
+
+######################################################################################
+#
+# Configuration of reverse proxy routes
+# Each application gets a unique routeId (e.g. restaurant)
+# Under the routeId node the attributes 'path' and 'url' needs to be set
+# path: Portal-URL-Extension under which the application will be available to users
+# url: URL of the targeted application (server) to which all requests will be forwarded
+#
+#######################################################################################
 zuul:
   routes:
-    exampleAppServer:
+    restaurant:
       path: /oasp4j-sample-server/**
       url: http://openam.sixgems.org:8081/oasp4j-sample-server
 auth:
   sessionAttributeName: jwtSessionToken
+
+######################################################################################
+#
+# Mapping of OpenAM User attributes and properties to Json Web Token Claims
+# properties.username: name of the OpenAM property that will be bound to the 'sub'
+# claim in the JWT.
+# attributes.additionalAttributes: Comma-seperated list of OpenAM attributes which will
+# be send inside the Json Web Token.
+#
+#######################################################################################
 openam:
   ssotoken:
     properties:
       username: UserId
     attributes:
       additionalAttributes: cn,mail,employeeNumber,postalAddress
+  groups:
+    prefixForGeneralRole: general

@@ -2,6 +2,7 @@ package org.sixgems.model.impl;
 
 import org.sixgems.model.api.SsoUserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,13 @@ public class OpenAMSsoUser implements SsoUserDetails {
     @Override
     public Map<String, Collection<String>> getSsoUserGroups() {
         return ssoUserGroups;
+    }
+
+    public Collection<String> getSsoUserGroupsForApplication(String applicationName){
+        if (ssoUserGroups.containsKey(applicationName)){
+            return ssoUserGroups.get(applicationName);
+        }
+        return new ArrayList<>();
     }
 
     @Override

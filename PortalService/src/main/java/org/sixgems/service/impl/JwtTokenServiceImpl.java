@@ -41,7 +41,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public String convertToJwt(SsoUserDetails userDetails) {
+    public String convertToJwt(SsoUserDetails userDetails) throws RuntimeException{
 
         Date issuedAt = new Date();
         Date expirationAt = getExpDate(issuedAt);
@@ -83,6 +83,9 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         //put List of groups in the claims-payload of the JWT
         if (!groups.isEmpty()){
             claims.put("groups", groups);
+        }
+        else{
+            throw new RuntimeException("User must be in at least one Group");
         }
 
         return claims;

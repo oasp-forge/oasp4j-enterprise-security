@@ -20,7 +20,10 @@ public class JwtTokenSessionHolder implements Serializable{
     private static final long serialVersionUID = 7526472295622776147L;
 
     private String jwt;
+
     private String ssoTokenId;
+
+    private String cachedApplicationName;
 
     public JwtTokenSessionHolder() {
     }
@@ -39,5 +42,13 @@ public class JwtTokenSessionHolder implements Serializable{
 
     public void setSsoTokenId(String ssoTokenId) {
         this.ssoTokenId = ssoTokenId;
+    }
+
+    public String getCachedApplicationName() {
+        return cachedApplicationName;
+    }
+
+    public void setCachedApplicationName(String cachedApplicationName) {
+        this.cachedApplicationName = cachedApplicationName;
     }
 }

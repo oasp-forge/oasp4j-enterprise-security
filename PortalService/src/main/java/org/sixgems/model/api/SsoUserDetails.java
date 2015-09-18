@@ -31,6 +31,14 @@ public interface SsoUserDetails{
     Map<String, Collection<String>> getSsoUserGroups();
 
     /**
+     * Returns a collection of groups the user is assigned to in a specific application (if the application-name is provided)
+     * or all general groups the user is assigned to (if the 'general'-prefix is handed over)
+     * @param applicationName
+     * @return Collection of application specific or general roles. Returns an empty Collection if no valid application name is handed over
+     */
+    Collection<String> getSsoUserGroupsForApplication (String applicationName);
+
+    /**
      * Returns additional Attributes of the Single Sign On User
      * SsoUserAttributes can be null, if no further Attributes should be relayed to the backend-Services
      * @return
