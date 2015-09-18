@@ -182,7 +182,7 @@
                         {
                             "policyId" : "minimum-length",
                             "params" : {
-                                "minLength" : 16
+                                "minLength" : 4
                             }
                         },
                         {
