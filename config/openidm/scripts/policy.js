@@ -32,11 +32,16 @@ var _ = require('lib/lodash'),
             "clientValidation": true,
             "policyRequirements" : ["REQUIRED"]
         },
+        {   "policyId" : "external-user-prefix",
+            "policyExec" : "externalUserPrefix",
+            "clientValidation" : true,
+            "policyRequirements" : ["EXTERNAL_USER_PREFIX"]
+        },
         {   "policyId" : "not-empty",
             "policyExec" : "notEmpty",
             "clientValidation": true,
             "validateOnlyIfPresent": true,
-            "policyRequirements" : ["REQUIRED"]
+            "policyRequirements" : ["UNIQUE"]
         },
         {
             "policyId" : "max-attempts-triggers-lock-cooldown",
@@ -50,11 +55,6 @@ var _ = require('lib/lodash'),
         {   "policyId" : "no-internal-user-conflict",
             "policyExec" : "noInternalUserConflict",  
             "policyRequirements" : ["UNIQUE"]
-        },
-		{   "policyId" : "external-user-prefix",
-            "policyExec" : "externalUserPrefix",  
-			"clientValidation": true,
-            "policyRequirements" : ["EXTERNAL_USER_PREFIX"]
         },
         {
             "policyId" : "regexpMatches",
@@ -206,6 +206,19 @@ policyImpl = (function (){
         }
         return failures;
     };
+    
+    
+    policyFunctions.externalUserPrefix = function(fullObject, value, params, property) {
+		var copyValue = value;
+		var prefix = params.prefix;
+		var prefixLength = prefix.length;
+
+        if (copyValue.substring(0, prefixLength)!=prefix) {
+            return [ { "policyRequirement" : "EXTERNAL_USER_PREFIX", params: {"prefix":prefix}}];
+        }
+
+        return [];
+    };
 
     policyFunctions.noInternalUserConflict = function(fullObject, value, params, property) {
         var queryParams,existing,requestId,requestBaseArray;
@@ -222,18 +235,6 @@ policyImpl = (function (){
                 return [{"policyRequirement": "UNIQUE"}];
             }
         }
-        return [];
-    };
-	
-	policyFunctions.externalUserPrefix = function(fullObject, value, params, property) {
-		var copyValue = value;
-		var prefix = params.prefix;
-		var prefixLength = prefix.length;
-		
-        if (copyValue.substring(0, prefixLength)!=prefix) {
-            return [ { "policyRequirement" : "EXTERNAL_USER_PREFIX"}];
-        }
-
         return [];
     };
 
