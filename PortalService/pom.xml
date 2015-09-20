@@ -11,7 +11,10 @@
     <packaging>war</packaging>
 
     <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <start-class>org.sixgems.PortalServiceApp</start-class>
+        <openam.version>10.0.0</openam.version>
     </properties>
 
     <parent>
@@ -44,7 +47,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
-            <version>1.0.0.RELEASE</version>
+            <version>1.0.2.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -59,6 +62,18 @@
             <version>1.0.0.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.forgerock.openam</groupId>
+            <artifactId>clientsdk</artifactId>
+            <version>${openam.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -66,6 +81,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:9090/manager/html</url>
+                    <path>/portal</path>
+                    <username>tomcat</username>
+                    <password>password</password>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -75,6 +102,12 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
+
+        <repository>
+            <id>forgerock</id>
+            <url>http://maven.forgerock.org/repo/releases</url>
+        </repository>
+
     </repositories>
     <pluginRepositories>
         <pluginRepository>
