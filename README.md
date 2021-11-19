@@ -1,2 +1,2 @@
-oasp4j-enterprise-security
+oasp4j-enterprise-security[ARCHIVED REPOSITORY]
 ==========================
